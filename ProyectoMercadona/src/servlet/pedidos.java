@@ -41,13 +41,11 @@ public class pedidos extends HttpServlet {
 
 		String id = (String) request.getSession().getAttribute("id");
 		try {
-			System.out.print("select * FROM pedido Where cliente_id=" + id + "  and confirmado=0");
 			rs = c.query("select * FROM pedido Where cliente_id=" + id + "  and confirmado=0");
 
 			int pedido_id;
 			if (!rs.next()) {
 				//String fp = request.getParameter("fecha_pedido");
-				System.out.print("INSERT INTO pedido ( confirmado, cliente_id) VALUES " + "( '0', '" + id + "');");
 				pedido_id = c.insert("INSERT INTO pedido ( confirmado, cliente_id) VALUES " + "( '0', '" + id + "');");
 			}
 			else {
@@ -56,8 +54,6 @@ public class pedidos extends HttpServlet {
 
 			
 			String producto_id = request.getParameter("id");
-			System.out.print("INSERT INTO pedido_producto ( predido_id, producto_id)" + " VALUES ('" + pedido_id + "', '" + producto_id
-					+ "');");
 
 			c.insert("INSERT INTO pedido_producto ( predido_id, producto_id)" + " VALUES ('" + pedido_id + "', '" + producto_id
 					+ "');");
