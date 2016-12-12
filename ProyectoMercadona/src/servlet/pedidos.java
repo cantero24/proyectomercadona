@@ -39,8 +39,10 @@ public class pedidos extends HttpServlet {
 		MysqlConnect c = MysqlConnect.getDbCon();
 		ResultSet rs = null;
 
+		
 		String id = (String) request.getSession().getAttribute("id");
 		try {
+			
 			rs = c.query("select * FROM pedido Where cliente_id=" + id + "  and confirmado=0");
 
 			int pedido_id;
